@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "./global.css";
+import { Text, View, Platform, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import TopTabNavigator from './navigation/TopTabNavigator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      {/* StatusBar */}
+      <StatusBar backgroundColor="#171717" barStyle="light-content" />
+
+      <View style={{ flex: 1 }}>
+        {/* AppBar */}
+        <View className="w-full py-4 px-4 bg-primary">
+          <Text className="text-white/75 text-lg font-bold">Triv</Text>
+        </View>
+
+        {/* Navigation */}
+        <NavigationContainer>
+          <TopTabNavigator />
+        </NavigationContainer>
+      </View>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
