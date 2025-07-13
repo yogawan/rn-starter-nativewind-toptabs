@@ -1,17 +1,22 @@
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import MarketScreen from '../screens/MarketScreen';
 import StakeScreen from '../screens/StakeScreen';
 import SpotScreen from '../screens/SpotScreen';
 import FutureScreen from '../screens/FutureScreen';
 import WalletScreen from '../screens/WalletScreen';
-import CustomTabBar from '../components/CustomTabBar';
+import CustomBottomTabs from '../components/CustomBottomTabs';
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function TopTabNavigator() {
+export default function BottomTabs() {
   return (
-    <Tab.Navigator tabBar={(props) => <CustomTabBar {...props} />}>
+    <Tab.Navigator
+      tabBar={(props) => <CustomBottomTabs {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Market" component={MarketScreen} />
       <Tab.Screen name="Stake" component={StakeScreen} />

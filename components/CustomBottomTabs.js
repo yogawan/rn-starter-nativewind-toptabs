@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function CustomTabBar({ state, descriptors, navigation }) {
+export default function CustomBottomTabs({ state, descriptors, navigation }) {
   const insets = useSafeAreaInsets();
 
   const iconMap = {
@@ -16,31 +16,34 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
 
   return (
     <View
-      className="flex-row justify-between items-center bg-primary px-4 py-2"
-      style={{ paddingTop: insets.top }}
+      className="flex-row justify-around bg-primary px-2"
+      style={{ paddingBottom: insets.bottom + 8, paddingTop: 8 }}
     >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel ?? options.title ?? route.name;
         const isFocused = state.index === index;
 
+        const onPress = () => {
+          if (!isFocused) {
+            navigation.navigate(route.name);
+          }
+        };
+
         return (
           <TouchableOpacity
             key={route.key}
-            onPress={() => navigation.navigate(route.name)}
-            className={`px-3 py-2 rounded-full ${
-              isFocused ? 'border border-white/20' : ''
-            }`}
+            onPress={onPress}
+            className="items-center px-2"
           >
-            <View className="flex-row items-center">
+            <View className="flex-row items-center pb-5">
               <Ionicons
                 name={iconMap[route.name] || 'ellipse'}
-                size={16}
+                size={20}
                 color={isFocused ? 'white' : '#EEEEEE'}
               />
-
               {isFocused && (
-                <Text className="ml-1 text-[12px] text-white font-bold leading-none align-middle">
+                <Text className="ml-2 text-white/75 text-sm font-bold">
                   {label}
                 </Text>
               )}
