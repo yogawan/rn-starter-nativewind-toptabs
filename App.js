@@ -2,8 +2,8 @@ import "./global.css";
 import { Text, View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import TopTabs from "./navigation/TopTabs";
-// import BottomTabs from "./navigation/BottomTabs";
+// import TopTabs from "./navigation/TopTabs";
+import BottomTabs from "./navigation/BottomTabs";
 
 export default function App() {
   return (
@@ -19,7 +19,7 @@ export default function App() {
 
         {/* Navigation */}
         <NavigationContainer>
-          <TopTabs />
+          <BottomTabs />
         </NavigationContainer>
       </View>
     </SafeAreaProvider>
